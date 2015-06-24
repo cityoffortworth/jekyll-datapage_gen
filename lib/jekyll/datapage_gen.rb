@@ -1,6 +1,7 @@
 # Generate pages from individual records in yml files
 # (c) 2014 Adolfo Villafiorita
 # Distributed under the conditions of the MIT License
+require 'jekyll'
 
 module Jekyll
 
@@ -38,7 +39,7 @@ module Jekyll
           template = data_spec['template'] || data_spec['data']
           name = data_spec['name']
           dir = data_spec['dir'] || data_spec['data']
-          
+
           if site.layouts.key? template
             records =  site.data[data_spec['data']]
             records.each do |record|
@@ -73,4 +74,3 @@ module Jekyll
 end
 
 Liquid::Template.register_filter(Jekyll::DataPageLinkGenerator)
-
