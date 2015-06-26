@@ -27,6 +27,7 @@ page_gen:
   - data: <<name of the data>>
     template: <<name of the template to use to generate the page>>
     name: <<field used to generate the filename>>
+    title: <<field used to set the title>>
     dir: <<directory in which files are to be generated>>
   - ...
 </pre>
@@ -35,6 +36,7 @@ where:
 
 - @data@ := is the name of the file to read
 - @name@ := is the name of a field which contains a unique identifier that can  be used to generate a filename
+- @title@ := is the name of a field that will be set as the page title
 - @template@ := is the name of a template to generate the pages (it defaults to the value of @data@ + ".html"). Optional, if not set, the generator uses the value of the @data@ field
 - @dir@ := is the directory where pages are generated (it defaults to the value of @data@). Optional, if not specified, the generator uses the value of the @data@ field.
 
@@ -45,8 +47,8 @@ A liquid tag is also made available to generate a link to a given page.  For ins
 <pre>
    {{ page_name | data_page_url: dir }}
 </pre>
- 
-generates a link to @page_name@ in @dir@. 
+
+generates a link to @page_name@ in @dir@.
 
 h1. Example
 

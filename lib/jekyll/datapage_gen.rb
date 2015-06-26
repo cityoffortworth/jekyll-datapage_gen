@@ -6,7 +6,7 @@ require 'jekyll'
 module Jekyll
 
   class DataPage < Page
-    def initialize(site, base, dir, data, name, template)
+    def initialize(site, base, dir, data, name, title, template)
       @site = site
       @base = base
       @dir = dir
@@ -15,7 +15,7 @@ module Jekyll
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), template + ".html")
       self.data.merge!(data)
-      self.data['title'] = data[name]
+      self.data['title'] = data[title]
     end
 
     private
@@ -38,12 +38,13 @@ module Jekyll
           # todo: check input data correctness
           template = data_spec['template'] || data_spec['data']
           name = data_spec['name']
+          title = data_spec['title']
           dir = data_spec['dir'] || data_spec['data']
 
           if site.layouts.key? template
             records =  site.data[data_spec['data']]
             records.each do |record|
-              site.pages << DataPage.new(site, site.source, dir, record, name, template)
+              site.pages << DataPage.new(site, site.source, dir, record, name, title, template)
             end
           else
             puts "error. could not find #{data_file}" if not File.exists?(data_file)
