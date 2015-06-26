@@ -9,13 +9,15 @@ module Jekyll
     def initialize(site, base, dir, data, name, title, template)
       @site = site
       @base = base
-      @dir = File.join(dir, sanitize_filename(data[name]))
-      @name = 'index.html'
+      @dir = dir
+      name = sanitize_filename(data[name])
+      @name = name + '.html'
 
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), template + ".html")
       self.data.merge!(data)
       self.data['title'] = data[title]
+      self.data['permalink'] = "/#{dir}/#{name}/"
     end
 
     private

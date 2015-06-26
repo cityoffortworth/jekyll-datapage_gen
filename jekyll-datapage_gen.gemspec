@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
 
   spec.name          = 'jekyll-datapage_gen'
-  spec.version       = '0.0.2'
+  spec.version       = '0.0.3'
   spec.authors       = ['Adolfo Villafiorita']
   spec.email         = ['adolfo.villafiorita@fbk.eu']
   spec.summary       = ''
