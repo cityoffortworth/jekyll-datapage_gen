@@ -9,8 +9,8 @@ module Jekyll
     def initialize(site, base, dir, data, name, title, template)
       @site = site
       @base = base
-      @dir = dir
-      @name = sanitize_filename(data[name]) + ".html"
+      @dir = File.join(dir, sanitize_filename(data[name]))
+      @name = 'index.html'
 
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), template + ".html")
